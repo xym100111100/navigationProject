@@ -1,20 +1,17 @@
 import React from "react"
 import { Button, View, Text, StyleSheet } from "react-native"
 
-export default class HomePage extends React.Component {
-    static navigationOptions = {
-        title:"home5"
-    }
+export default class Page2 extends React.Component {
+
     render() {
         const { navigation } = this.props
         return (
             <View>
                 <Text style={styles.text} >
-                    欢迎来到home
+                    欢迎来到page2
                  </Text>
-                <Button title="go page1" onPress={() => {
-                    navigation.navigate('Page1')    
-
+                <Button title="go Page3" onPress={() => {
+                    navigation.navigate('Page3')
                 }} ></Button>
             </View>)
     }
