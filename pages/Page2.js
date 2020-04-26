@@ -11,7 +11,7 @@ export default class Page2 extends React.Component {
                     欢迎来到page2
                  </Text>
                 <Button title="go Page3" onPress={() => {
-                    navigation.navigate('Page3')
+                    navigation.navigate('Page3', { name: '动态页面', mode: 'edit' })
                 }} ></Button>
             </View>)
     }
