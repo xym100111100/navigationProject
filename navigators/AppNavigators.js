@@ -15,6 +15,7 @@ export const AppStackNavigator = createStackNavigator(
         Page1: {
             screen: Page1,
             navigationOptions: ({ navigation }) => (
+                // 这里的写法{ navigation } 是取出props对象里面的navigation
                 {
                     //动态接受参数作为页面名
                     title: `${navigation.state.params && navigation.state.params.name}页面名`
@@ -24,7 +25,8 @@ export const AppStackNavigator = createStackNavigator(
         Page2: {
             screen: Page2,
             navigationOptions: {
-                title: "导航标题"
+                title: "导航标题",
+                headerShown: false //隐藏header
             }
         },
         Page3: {
@@ -32,13 +34,14 @@ export const AppStackNavigator = createStackNavigator(
             navigationOptions: (props) => {
                 const { navigation } = props;
                 const { state, setParams } = navigation;
+                // 这里注意state，与react中的state相似，这里可以使用setParams设置，页面表现和react的state一样
                 const { params } = state;
                 return {
                     title: params ? params.name : "this is paee3",
                     headerRight: () => (<Button
                         title={params.mode === 'edit' ? '编辑' : '保存'}
                         onPress={() => {
-                            setParams({ mode: params.mode === 'edit' ? '编辑完成' : '保存完成' })
+                            setParams({ mode: params.mode === 'edit' ? '' : 'edit' })
                         }}
                     />)
                 }
@@ -52,7 +55,7 @@ export const AppStackNavigator = createStackNavigator(
     },
     {
         defaultNavigationOptions: {//全局默认属性，对当前导航器的所有页面有效
-            //headerShown: false //可以通过将header设为null 来禁用StackNavigator的Navigation Bar
+            // headerShown: false //可以通过将header设为null 来禁用StackNavigator的Navigation Bar
         }
     }
 )
