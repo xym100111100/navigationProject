@@ -48,6 +48,12 @@ export default class HomePage extends React.Component {
 
                     }} />
                 </View>
+                <View style={styles.button}  >
+                    <Button style={styles.button} title="DrawerNav 侧边栏导航 " onPress={() => {
+                        navigation.navigate('DrawerNav', { name: '猫咪' })
+
+                    }} />
+                </View>
             </View>)
     }
 
@@ -60,7 +66,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         color: "red",
-        textAlign:'center'
+        textAlign: 'center'
     },
     button: {
         marginTop: 10,

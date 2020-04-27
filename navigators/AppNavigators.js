@@ -5,10 +5,59 @@ import Page2 from "../pages/Page2"
 import Page3 from "../pages/Page3"
 import Page4 from "../pages/Page4"
 import Page5 from "../pages/Page5"
+import page6 from "../pages/page6"
+import page7 from "../pages/page7"
 import HomePage from "../pages/HomePage"
-import { Button, Text } from "react-native"
+import { Button, Text, ScrollView } from "react-native"
+import { SafeAreaView } from "react-navigation"
 import { createBottomTabNavigator, createMaterialTopTabNavigator } from "react-navigation-tabs"
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import { createDrawerNavigator, DrawerNavigatorItems } from "react-navigation-drawer"
+import MaterialIcons from "react-native-vector-icons/MaterialIcons"
+const DrawerNav = createDrawerNavigator(
+    {
+        page6: {
+            screen: page6,
+            navigationOptions: {
+                drawerLabel: "page6",
+                drawerIcon: ({ tintColor, focused }) => (
+                    <MaterialIcons
+                        name={"drafts"}
+                        size={24}
+                        style={{ color: tintColor }}
+                    />
+                )
+            }
+        },
+        page7: {
+            screen: page7,
+            navigationOptions: {
+                drawerLabel: "page7",
+                drawerIcon: ({ tintColor, focused }) => (
+                    <MaterialIcons
+                        name={"move-to-inbox"}
+                        size={24}
+                        style={{ color: tintColor }}
+                    />
+                )
+            }
+        }
+    },
+    {
+        contentComponent: (props) => (
+            <ScrollView style={{ backgroundColor: '#098', flex: 1 }} s >
+                < SafeAreaView forceInset={{ top: 'always' }} >
+                    <DrawerNavigatorItems {...props} />
+                </SafeAreaView>
+            </ScrollView >
+
+        ),
+        contentOptions:{
+            activeTintColor:"white" // 设置全局样式
+        }
+    }
+)
+
 
 const MaterialTopTabNavigator = createMaterialTopTabNavigator(
     {
@@ -109,6 +158,12 @@ export const AppStackNavigator = createStackNavigator(
         HomePage: {
             screen: HomePage
 
+        },
+        DrawerNav: {
+            screen: DrawerNav,
+            navigationOptions: {
+                title: '侧边栏导航'
+            }
         },
         MaterialTopTabNavigator: {
             screen: MaterialTopTabNavigator,
