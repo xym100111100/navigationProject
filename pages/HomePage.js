@@ -15,23 +15,39 @@ export default class HomePage extends React.Component {
         return (
             <View>
                 <Text style={styles.text} >
-                    欢迎来到home
-                    {/* <AntDesign
-                        name={'down'}
-                        size={50}
-                        style={{ color: 'red' }}
-                    />
-                    <Icon name="rocket" size={30} color="#900" /> */}
+                    欢迎来到
                     <Ionicons
                         name={'ios-home'}
                         size={26}
                         style={{ color: 'red' }}
                     />
+                    home
                 </Text>
-                <Button title="go page1" onPress={() => {
-                    navigation.navigate('Page1', { name: '猫咪' })
+                <View style={styles.button}  >
+                    <Button title="page1 动态传参数" onPress={() => {
+                        navigation.navigate('Page1', { name: '猫咪' })
 
-                }} ></Button>
+                    }} />
+
+                </View>
+                <View style={styles.button} >
+                    <Button title="BottomTabNavigator 底部导航 " onPress={() => {
+                        navigation.navigate('BottomTabNavigator', { name: '猫咪' })
+
+                    }} />
+                </View>
+                <View style={styles.button}  >
+                    <Button style={styles.button} title="page3 修改导航参数" onPress={() => {
+                        navigation.navigate('Page3', { name: '猫咪' })
+
+                    }} />
+                </View>
+                <View style={styles.button}  >
+                    <Button style={styles.button} title="MaterialTopTabNavigator 顶部导航 " onPress={() => {
+                        navigation.navigate('MaterialTopTabNavigator', { name: '猫咪' })
+
+                    }} />
+                </View>
             </View>)
     }
 
@@ -43,6 +59,11 @@ const styles = StyleSheet.create({
 
     text: {
         fontSize: 20,
-        color: "red"
+        color: "red",
+        textAlign:'center'
+    },
+    button: {
+        marginTop: 10,
+        color: 'red'
     }
 })

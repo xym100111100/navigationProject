@@ -1,7 +1,7 @@
 import React from "react"
 import { Button, View, Text, StyleSheet } from "react-native"
 
-export default class Page1 extends React.Component {
+export default class Page4 extends React.Component {
 
     render() {
         const { navigation } = this.props

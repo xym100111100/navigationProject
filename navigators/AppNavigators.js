@@ -4,14 +4,61 @@ import Page1 from "../pages/Page1"
 import Page2 from "../pages/Page2"
 import Page3 from "../pages/Page3"
 import Page4 from "../pages/Page4"
+import Page5 from "../pages/Page5"
 import HomePage from "../pages/HomePage"
 import { Button, Text } from "react-native"
-import { createBottomTabNavigator } from "react-navigation-tabs"
+import { createBottomTabNavigator, createMaterialTopTabNavigator } from "react-navigation-tabs"
 import Ionicons from 'react-native-vector-icons/Ionicons'
+
+const MaterialTopTabNavigator = createMaterialTopTabNavigator(
+    {
+        Page4: {
+            screen: Page4,
+            navigationOptions: {
+                tabBarLabel: ({ tintColor, focused }) => (
+                    <Text style={{ color: focused ? 'orange' : 'grey', textAlign: 'center' }} >page4</Text>
+                ),
+                tabBarIcon: ({ tintColor, focused }) => (
+                    <Ionicons
+                        name={'ios-home'}
+                        size={26}
+                        style={{ color: tintColor }}
+                    />
+                )
+
+
+            }
+        },
+        Page5: {
+            screen: Page5,
+            navigationOptions: {
+                tabBarLabel: ({ tintColor, focused }) => (
+                    <Text style={{ color: focused ? 'orange' : 'grey', textAlign: 'center' }} >page5</Text>
+                ),
+                tabBarIcon: ({ tintColor, focused }) => {
+                    return (
+                        <Ionicons
+                            name={'ios-people'}
+                            size={26}
+                            style={{ color: tintColor }}
+                        />
+                    )
+
+                }
+            }
+        }
+    },
+    {
+        tabBarOptions: {
+            activeTintColor: 'red'
+        }
+    }
+)
+
 
 const BottomTabNavigator = createBottomTabNavigator(
     {
-        Page1: {
+        Page: {
             screen: Page1,
             navigationOptions: {
                 //tabBarLabel: 'page1',  // 这里除了字符串还可以接受一个组件,下面为例子,切记加上后面的对齐属性
@@ -60,7 +107,16 @@ export const AppStackNavigator = createStackNavigator(
     {
 
         HomePage: {
-            //screen: HomePage
+            screen: HomePage
+
+        },
+        MaterialTopTabNavigator: {
+            screen: MaterialTopTabNavigator,
+            navigationOptions: {
+                title: '顶部导航',
+            }
+        },
+        BottomTabNavigator: {
             screen: BottomTabNavigator,
             navigationOptions: {
                 title: '底部导航',
@@ -78,10 +134,10 @@ export const AppStackNavigator = createStackNavigator(
             )
         },
         Page2: {
-            screen: Page2,
+            screen: BottomTabNavigator,
             navigationOptions: {
-                title: "导航标题",
-                headerShown: false //隐藏header
+                title: '底部导航',
+                headerShown: false
             }
         },
         Page3: {
