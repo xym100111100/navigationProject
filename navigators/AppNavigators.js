@@ -5,12 +5,67 @@ import Page2 from "../pages/Page2"
 import Page3 from "../pages/Page3"
 import Page4 from "../pages/Page4"
 import HomePage from "../pages/HomePage"
-import { Button } from "react-native"
+import { Button, Text } from "react-native"
+import { createBottomTabNavigator } from "react-navigation-tabs"
+import Ionicons from 'react-native-vector-icons/Ionicons'
+
+const BottomTabNavigator = createBottomTabNavigator(
+    {
+        Page1: {
+            screen: Page1,
+            navigationOptions: {
+                //tabBarLabel: 'page1',  // 这里除了字符串还可以接受一个组件,下面为例子,切记加上后面的对齐属性
+                tabBarLabel: ({ tintColor, focused }) => (
+                    <Text style={{ color: focused ? 'orange' : 'grey', textAlign: 'center' }} >page1</Text>
+                ),
+                tabBarIcon: ({ tintColor, focused }) => (
+                    <Ionicons
+                        name={'ios-home'}
+                        size={26}
+                        style={{ color: tintColor }}
+                    />
+                )
+
+
+            }
+        },
+        Page2: {
+            screen: Page2,
+            navigationOptions: {
+                tabBarLabel: ({ tintColor, focused }) => (
+                    <Text style={{ color: focused ? 'orange' : 'grey', textAlign: 'center' }} >page2</Text>
+                ),
+                tabBarIcon: ({ tintColor, focused }) => {
+                    return (
+                        <Ionicons
+                            name={'ios-people'}
+                            size={26}
+                            style={{ color: tintColor }}
+                        />
+                    )
+
+                }
+            }
+        }
+    },
+    {
+        tabBarOptions: {
+            activeTintColor: 'red'
+        }
+    }
+)
+
+
 export const AppStackNavigator = createStackNavigator(
     {
 
         HomePage: {
-            screen: HomePage
+            //screen: HomePage
+            screen: BottomTabNavigator,
+            navigationOptions: {
+                title: '底部导航',
+                headerShown: false
+            }
         },
         Page1: {
             screen: Page1,

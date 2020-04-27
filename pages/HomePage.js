@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 export default class HomePage extends React.Component {
     static navigationOptions = {
         title: "home",
-        headerBackTitle: '返回', // 有长度相纸android不支持
+        headerBackTitle: '返回', // 有长度限制，android不支持
     }
     render() {
         const { navigation } = this.props
